@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class UserDAO implements Serializable {
+public class UserDao implements Serializable {
    //
 
 	    /**
@@ -79,7 +79,7 @@ public class UserDAO implements Serializable {
 
 		
 	    
-	    public UserDAO() {
+	    public UserDao() {
 	    }
 
 

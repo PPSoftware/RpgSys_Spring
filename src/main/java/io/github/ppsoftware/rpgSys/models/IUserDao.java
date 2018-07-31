@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface IUserDao<T> extends CrudRepository<UserDAO, T >{
+public interface IUserDao<T> extends CrudRepository<UserDao, T >{
 	
 
 
