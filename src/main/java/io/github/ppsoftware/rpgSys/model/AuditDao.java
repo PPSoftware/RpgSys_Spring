@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,15 +27,17 @@ public class AuditDao {
 	@Column(name = "id")
 	private BigInteger id;
 
-	@OneToOne(optional = true)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private UserDao user;
+	
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", updatable = false)
-	private Date createdTime;
+	private Date created_at;
 
+	
 	@Column(name = "action")
 	private String action;
 	
@@ -66,13 +68,23 @@ public class AuditDao {
 	public void setController(String controller) {
 		this.controller = controller;
 	}
-	public Date getCreatedTime() {
-		return createdTime;
+
+	public UserDao getUser() {
+		return user;
 	}
 
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
+	public void setUser(UserDao user) {
+		this.user = user;
 	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+
 	
 	public AuditDao() {
 	}

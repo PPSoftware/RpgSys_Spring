@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,29 +19,39 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "audit")
+@Table(name = "character")
 public class CharacterDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUDIT_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "AUDIT_SEQUENCE_GENERATOR", sequenceName = "SQ_AUDIT")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHARACTER_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "CHARACTER_SEQUENCE_GENERATOR", sequenceName = "SQ_CHARACTER")
 	@Column(name = "id")
 	private BigInteger id;
 
-	@OneToOne(optional = true)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private UserDao user;
+	
+	@OneToOne(optional = false)
+	@JoinColumn(name = "id_race", referencedColumnName = "id")
+	private RaceDao race;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", updatable = false)
-	private Date createdTime;
+	private Date created_at;
 
-	@Column(name = "action")
-	private String action;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "controller")
-	private String controller;
+	@Column(name = "age")
+	private Integer age;
+	
+	@Column(name = "height")
+	private Float height;
+	
+	@Column(name = "weight")
+	private Float weight;
 	
 	public BigInteger getId() {
 		return id;
@@ -51,29 +62,63 @@ public class CharacterDao {
 	}
 
 
-	public String getAction() {
-		return action;
+	public String getName() {
+		return name;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public String getController() {
-		return controller;
+	public Integer getAge() {
+		return age;
 	}
 
-	public void setController(String controller) {
-		this.controller = controller;
-	}
-	public Date getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 	
+	public Float getHeight() {
+		return height;
+	}
+
+	public void setHeight(Float height) {
+		this.height = height;
+	}
+	
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
+	}
+	
+	
+	public UserDao getUser() {
+		return user;
+	}
+
+	public void setUser(UserDao user) {
+		this.user = user;
+	}
+
+	public RaceDao getRace() {
+		return race;
+	}
+
+	public void setRace(RaceDao race) {
+		this.race = race;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+
 	public CharacterDao() {
 	}
 }
