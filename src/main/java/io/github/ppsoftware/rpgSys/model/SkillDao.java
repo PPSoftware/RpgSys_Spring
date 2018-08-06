@@ -16,12 +16,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "race_size")
-public class RaceSizeDao {
+@Table(name = "skills")
+public class SkillDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACE_SIZE_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "RACE_SIZE_SEQUENCE_GENERATOR", sequenceName = "SQ_RACE_SIZE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "SKILL_SEQUENCE_GENERATOR", sequenceName = "SQ_SKILL")
 	@Column(name = "id")
 	private BigInteger id;
 
@@ -90,6 +90,6 @@ public class RaceSizeDao {
 	
 	
 	
-	public RaceSizeDao() {
+	public SkillDao() {
 	}
 }

@@ -53,8 +53,30 @@ public class CharacterDao {
 	@Column(name = "weight")
 	private Float weight;
 	
+	@Column(name = "alignment")
+	private Alignment alignment;
+	
+	@Column(name = "status")
+	private Status status;
+	
 	public BigInteger getId() {
 		return id;
+	}
+
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(Alignment alignment) {
+		this.alignment = alignment;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public void setId(BigInteger id) {
@@ -105,7 +127,7 @@ public class CharacterDao {
 
 	public RaceDao getRace() {
 		return race;
-	}
+	}	
 
 	public void setRace(RaceDao race) {
 		this.race = race;
