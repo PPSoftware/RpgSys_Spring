@@ -8,20 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "TB_USER")
+@Table(name = "users")
 public class UserDao implements Serializable {
 
 	private static final long serialVersionUID = -2257996512395408133L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
-	@SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "USERS_SEQUENCE_GENERATOR", sequenceName = "SQ_USERS")
 	@Column(name = "id")
 	private long id;
+
+	@ManyToMany()
+	@JoinColumn(name = "id_user_group", referencedColumnName = "id")
+	private UserGroupDao user_group;
 
 	@Column(name = "login")
 	private String login;
@@ -29,10 +41,14 @@ public class UserDao implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "created_at")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", updatable = false)
 	private Date created_at;
-	
-	@Column(name = "update_at")
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_at", updatable = false)
 	private Date update_at;
 	
 	@Column(name = "email")
@@ -96,6 +112,14 @@ public class UserDao implements Serializable {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+	
+	public UserGroupDao getUser_group() {
+		return user_group;
+	}
+
+	public void setUser_group(UserGroupDao user_group) {
+		this.user_group = user_group;
 	}
 
 	public UserDao() {

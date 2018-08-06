@@ -18,12 +18,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "race")
+@Table(name = "races")
 public class RaceDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACE_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "RACE_SEQUENCE_GENERATOR", sequenceName = "SQ_RACE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACES_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "RACES_SEQUENCE_GENERATOR", sequenceName = "SQ_RACES")
 	@Column(name = "id")
 	private BigInteger id;
 
@@ -33,7 +33,7 @@ public class RaceDao {
 	
 	@OneToOne(optional = false)
 	@JoinColumn(name = "id_race_type", referencedColumnName = "id")
-	private RaceTypeDao id_race_type;
+	private RaceTypeDao race_type;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -60,6 +60,26 @@ public class RaceDao {
 	@Column(name = "weight")
 	private Float weight;
 	
+	@OneToOne(optional = true)
+	@JoinColumn(name = "id_reference_book", referencedColumnName = "id")
+	private ReferenceBookDao referenceBook;
+	
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
+	}
+
+	public ReferenceBookDao getReferenceBook() {
+		return referenceBook;
+	}
+
+	public void setReferenceBook(ReferenceBookDao referenceBook) {
+		this.referenceBook = referenceBook;
+	}
+
 	public RaceSizeDao getRace_size() {
 		return race_size;
 	}
@@ -69,11 +89,11 @@ public class RaceDao {
 	}
 
 	public RaceTypeDao getId_race_type() {
-		return id_race_type;
+		return race_type;
 	}
 
-	public void setId_race_type(RaceTypeDao id_race_type) {
-		this.id_race_type = id_race_type;
+	public void setId_race_type(RaceTypeDao race_type) {
+		this.race_type = race_type;
 	}
 
 	public Date getCreated_at() {
@@ -132,7 +152,6 @@ public class RaceDao {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 	
 	public RaceDao() {

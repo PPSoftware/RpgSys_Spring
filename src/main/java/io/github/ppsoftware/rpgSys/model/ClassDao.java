@@ -9,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,8 +25,8 @@ import org.hibernate.annotations.CreationTimestamp;
 public class ClassDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHARACTER_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "CHARACTER_SEQUENCE_GENERATOR", sequenceName = "SQ_CHARACTER")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLASSES_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "CLASSES_SEQUENCE_GENERATOR", sequenceName = "SQ_CLASSES")
 	@Column(name = "id")
 	private BigInteger id;
 
@@ -32,7 +34,7 @@ public class ClassDao {
 	@JoinColumn(name = "skill_modifier_per_level", referencedColumnName = "id")
 	private Integer SkillModifierPerLevel;
 	
-	@OneToOne(optional = false)
+	@ManyToMany()
 	@JoinColumn(name = "id_race", referencedColumnName = "id")
 	private RaceDao race;
 
@@ -56,12 +58,8 @@ public class ClassDao {
 	@Column(name = "skill_points_per_level")
 	private Integer skillPointsPerLevel;
 	
-	
-	@Column(name = "status")
-	private Status status;
-	
-	
-	@Column(name = "id_reference_book")
+	@OneToOne(optional = true)
+	@JoinColumn(name = "id_reference_book", referencedColumnName = "id")
 	private ReferenceBookDao referenceBook;
 	
 
@@ -169,18 +167,6 @@ public class ClassDao {
 
 	public void setSkillPointsPerLevel(Integer skillPointsPerLevel) {
 		this.skillPointsPerLevel = skillPointsPerLevel;
-	}
-
-
-
-	public Status getStatus() {
-		return status;
-	}
-
-
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 

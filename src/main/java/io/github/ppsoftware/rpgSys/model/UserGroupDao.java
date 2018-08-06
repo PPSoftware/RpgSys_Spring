@@ -1,7 +1,7 @@
 package io.github.ppsoftware.rpgSys.model;
 
-import java.math.BigInteger;
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +16,24 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "races_sizes")
-public class RaceSizeDao {
+@Table(name = "users_groups")
+public class UserGroupDao implements Serializable {
+
+	private static final long serialVersionUID = -2257996512395408133L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACES_SIZES_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "RACES_SIZES_SEQUENCE_GENERATOR", sequenceName = "SQ_RACES_SIZES")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_GROUPS_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "USERS_GROUPS_SEQUENCE_GENERATOR", sequenceName = "SQ_USERS_GROUPS")
 	@Column(name = "id")
-	private BigInteger id;
+	private long id;
 
+	@Column(name = "name")
+	private String name;
+
+
+	@Column(name = "STATUS")
+	private Status status;
+	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", updatable = false)
@@ -35,12 +44,24 @@ public class RaceSizeDao {
 	@Column(name = "update_at", updatable = false)
 	private Date update_at;
 	
-	@Column(name = "name")
-	private String name;
 	
-	@Column(name = "description")
-	private String description;
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 	public Date getCreated_at() {
 		return created_at;
 	}
@@ -56,34 +77,17 @@ public class RaceSizeDao {
 	public void setUpdate_at(Date update_at) {
 		this.update_at = update_at;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	public BigInteger getId() {
-		return id;
-	}
-
-	public void setId(BigInteger id) {
-		this.id = id;
-	}
-
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	
-	public RaceSizeDao() {
+	public Status getStatus() {
+		return status;
 	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public UserGroupDao() {
+	}
+
 }

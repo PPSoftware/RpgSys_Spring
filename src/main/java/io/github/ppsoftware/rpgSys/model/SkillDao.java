@@ -20,11 +20,10 @@ import org.hibernate.annotations.CreationTimestamp;
 public class SkillDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "SKILL_SEQUENCE_GENERATOR", sequenceName = "SQ_SKILL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILLS_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "SKILLS_SEQUENCE_GENERATOR", sequenceName = "SQ_SKILLS")
 	@Column(name = "id")
 	private BigInteger id;
-
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -42,8 +41,6 @@ public class SkillDao {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "STATUS")
-	private Status status;
 	
 	public Date getCreated_at() {
 		return created_at;

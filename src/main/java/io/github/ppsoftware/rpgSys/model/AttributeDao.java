@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,12 +16,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "references_books")
-public class ReferenceBookDao {
+@Table(name = "attributes")
+public class AttributeDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REFERENCES_BOOKS_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "REFERENCES_BOOKS_SEQUENCE_GENERATOR", sequenceName = "SQ_REFERENCES_BOOKS")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ATTRIBUTES_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "ATTRIBUTES_SEQUENCE_GENERATOR", sequenceName = "SQ_ATTRIBUTES")
 	@Column(name = "id")
 	private BigInteger id;
 
@@ -39,12 +36,38 @@ public class ReferenceBookDao {
 	@Column(name = "created_at", updatable = false)
 	private Date created_at;
 
-	@Column(name = "book")
-	private String book;
+	@Column(name = "name")
+	private String name;
 	
 	@Column(name = "abbreviation")
 	private String abbreviation;
 	
+	@Column(name = "description")
+	private String description;
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
 
 	public BigInteger getId() {
 		return id;
@@ -82,17 +105,6 @@ public class ReferenceBookDao {
 
 
 
-	public String getBook() {
-		return book;
-	}
-
-
-
-	public void setBook(String book) {
-		this.book = book;
-	}
-
-
 
 	public String getAbbreviation() {
 		return abbreviation;
@@ -106,6 +118,6 @@ public class ReferenceBookDao {
 
 
 
-	public ReferenceBookDao() {
+	public AttributeDao() {
 	}
 }

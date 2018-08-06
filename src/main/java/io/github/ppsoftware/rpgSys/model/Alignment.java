@@ -17,7 +17,7 @@ public enum Alignment {
 	
 	private Alignment(Byte id) {
 		this.id = id;
-	}
+	}	
 	
 	public static Alignment getType(Byte id) {
 		

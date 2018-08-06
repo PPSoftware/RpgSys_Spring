@@ -19,12 +19,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "character")
+@Table(name = "characters")
 public class CharacterDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHARACTER_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "CHARACTER_SEQUENCE_GENERATOR", sequenceName = "SQ_CHARACTER")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHARACTERS_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "CHARACTERS_SEQUENCE_GENERATOR", sequenceName = "SQ_CHARACTERS")
 	@Column(name = "id")
 	private BigInteger id;
 
@@ -32,7 +32,7 @@ public class CharacterDao {
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private UserDao user;
 	
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_race", referencedColumnName = "id")
 	private RaceDao race;
 
@@ -127,7 +127,7 @@ public class CharacterDao {
 
 	public RaceDao getRace() {
 		return race;
-	}	
+	}
 
 	public void setRace(RaceDao race) {
 		this.race = race;

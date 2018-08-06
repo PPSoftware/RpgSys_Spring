@@ -14,15 +14,14 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "race_type")
+@Table(name = "races_types")
 public class RaceTypeDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACE_TYPE_SEQUENCE_GENERATOR")
-	@SequenceGenerator(name = "RACE_TYPE_SEQUENCE_GENERATOR", sequenceName = "SQ_RACE_TYPE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RACES_TYPES_SEQUENCE_GENERATOR")
+	@SequenceGenerator(name = "RACES_TYPES_SEQUENCE_GENERATOR", sequenceName = "SQ_RACES_TYPES")
 	@Column(name = "id")
 	private BigInteger id;
-
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,9 +45,7 @@ public class RaceTypeDao {
 	@Column(name = "base_atack_bonus_modifier")
 	private Float baseAtackBonusModifier;
 
-	@Column(name = "status")
-	private Integer stratus;
-	
+
 	public BigInteger getId() {
 		return id;
 	}
@@ -144,24 +141,6 @@ public class RaceTypeDao {
 		this.baseAtackBonusModifier = baseAtackBonusModifier;
 	}
 
-
-
-
-	public Integer getStratus() {
-		return stratus;
-	}
-
-
-
-
-	public void setStratus(Integer stratus) {
-		this.stratus = stratus;
-	}
-
-
-
-
-	
 
 	
 	
