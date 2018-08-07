@@ -53,7 +53,7 @@ public class UserController {
 		UserDao stored = null;
 		// Retrieve from Repo
 		if (user.getEmail() != null ) {		
-			stored = repoUser.findByLoginAndEmail(user.getLogin(),
+			stored = repoUser.findByUserNameAndEmail(user.getUserName(),
 				user.getEmail());
 		}
 		

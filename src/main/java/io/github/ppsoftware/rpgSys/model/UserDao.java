@@ -2,6 +2,7 @@ package io.github.ppsoftware.rpgSys.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,7 +36,7 @@ public class UserDao implements Serializable {
 	private UserGroupDao user_group;
 
 	@Column(name = "login")
-	private String login;
+	private String userName;
 
 	@Column(name = "password")
 	private String password;
@@ -48,7 +48,7 @@ public class UserDao implements Serializable {
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_at", updatable = false)
+	@Column(name = "update_at", updatable = true)
 	private Date update_at;
 	
 	@Column(name = "email")
@@ -57,6 +57,7 @@ public class UserDao implements Serializable {
 	@Column(name = "STATUS")
 	private Status status;
 	
+	private Set<UserGroupDao> userGroup;
 	
 	public long getId() {
 		return id;
@@ -66,12 +67,12 @@ public class UserDao implements Serializable {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -122,6 +123,16 @@ public class UserDao implements Serializable {
 		this.user_group = user_group;
 	}
 
+    @ManyToMany
+    @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_groups_id"))
+    public Set<UserGroupDao> getGroups() {
+        return userGroup;
+    }
+
+    public void setGroups(Set<UserGroupDao> userGroup) {
+        this.userGroup = userGroup;
+    }
+    
 	public UserDao() {
 	}
 

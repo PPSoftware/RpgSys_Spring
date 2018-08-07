@@ -10,8 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public interface IUserDaoRepository extends CrudRepository<UserDao, BigInteger>, JpaSpecificationExecutor<UserDao>  {
 
-	UserDao findByLoginAndEmail(String login, String email);
+	UserDao findByUserNameAndEmail(String userName, String email);
+	
+	UserDao findByUserName(String userName);
 		
 	List<UserDao> findByLogin(String login);
 	
 }
+

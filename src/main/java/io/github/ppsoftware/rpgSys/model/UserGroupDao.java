@@ -2,12 +2,14 @@ package io.github.ppsoftware.rpgSys.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,9 +43,12 @@ public class UserGroupDao implements Serializable {
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_at", updatable = false)
+	@Column(name = "update_at", updatable = true)
 	private Date update_at;
 	
+	
+    private Set<UserDao> users;
+
 	
 	public long getId() {
 		return id;
@@ -86,6 +91,15 @@ public class UserGroupDao implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+    @ManyToMany(mappedBy = "userGroups")
+    public Set<UserDao> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<UserDao> users) {
+        this.users = users;
+    }
 
 	public UserGroupDao() {
 	}

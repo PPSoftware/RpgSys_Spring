@@ -26,7 +26,7 @@ public class CharacterClassDao implements Serializable {
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_at", updatable = false)
+	@Column(name = "update_at", updatable = true)
 	private Date update_at;
 	
 	@ManyToMany

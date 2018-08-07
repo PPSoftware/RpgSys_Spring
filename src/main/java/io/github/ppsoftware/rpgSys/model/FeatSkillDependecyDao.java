@@ -13,44 +13,37 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "character_feats")
-public class CharacterFeatDao implements Serializable {
+@Table(name = "feats_skills_dependecies")
+public class FeatSkillDependecyDao implements Serializable {
 
 	private static final long serialVersionUID = -2257996512395408133L;
-
-
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", updatable = false)
-	private Date created_at;
-
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_at", updatable = true)
-	private Date update_at;
+	
+	@Column(name = "value")
+	private Integer value;
 	
 	@ManyToMany
-	@JoinColumn(name = "id_class", referencedColumnName = "id")
-	private ClassDao characterClass;
+	@JoinColumn(name = "id_skill", referencedColumnName = "id")
+	private SkillDao skill;
 	
 	@ManyToMany
 	@JoinColumn(name = "id_feat", referencedColumnName = "id")
 	private FeatDao feat;
 
-	public Date getCreated_at() {
-		return created_at;
+
+	public Integer getValue() {
+		return value;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setValue(Integer value) {
+		this.value = value;
 	}
 
-	public Date getUpdate_at() {
-		return update_at;
+	public SkillDao getSkill() {
+		return skill;
 	}
 
-	public void setUpdate_at(Date update_at) {
-		this.update_at = update_at;
+	public void setSkill(SkillDao skill) {
+		this.skill = skill;
 	}
 
 	public FeatDao getFeat() {
@@ -61,7 +54,7 @@ public class CharacterFeatDao implements Serializable {
 		this.feat = feat;
 	}
 
-	public CharacterFeatDao() {
+	public FeatSkillDependecyDao() {
 	}
 
 }

@@ -13,8 +13,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "races_racial_traits")
-public class RaceRacialTraitDao implements Serializable {
+@Table(name = "character_feats")
+public class CharacterAttributeDao implements Serializable {
 
 	private static final long serialVersionUID = -2257996512395408133L;
 
@@ -30,30 +30,53 @@ public class RaceRacialTraitDao implements Serializable {
 	private Date update_at;
 	
 	@ManyToMany
-	@JoinColumn(name = "id_racial_trait", referencedColumnName = "id")
-	private RacialTraitDao racial_trait;
+	@JoinColumn(name = "id_character", referencedColumnName = "id")
+	private CharacterDao character;
 	
 	@ManyToMany
-	@JoinColumn(name = "id_race", referencedColumnName = "id")
-	private RaceDao race;
+	@JoinColumn(name = "id_attribute", referencedColumnName = "id")
+	private AttributeDao attributeDao;
+
+	@Column(name = "value")
+	private Integer value;
+
+	@Column(name = "temporary_value")
+	private Integer temporaryValue;	
 	
-	public RacialTraitDao getRacial_trait() {
-		return racial_trait;
-	}
-
-	public void setRacial_trait(RacialTraitDao racial_trait) {
-		this.racial_trait = racial_trait;
-	}
-
-	public RaceDao getRace() {
-		return race;
-	}
-
-	public void setRace(RaceDao race) {
-		this.race = race;
-	}
-
 	
+	
+	public CharacterDao getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(CharacterDao character) {
+		this.character = character;
+	}
+
+	public AttributeDao getAttributeDao() {
+		return attributeDao;
+	}
+
+	public void setAttributeDao(AttributeDao attributeDao) {
+		this.attributeDao = attributeDao;
+	}
+
+	public Integer getValue() {
+		return value;
+	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
+	public Integer getTemporaryValue() {
+		return temporaryValue;
+	}
+
+	public void setTemporaryValue(Integer temporaryValue) {
+		this.temporaryValue = temporaryValue;
+	}
+
 	public Date getCreated_at() {
 		return created_at;
 	}
@@ -70,8 +93,8 @@ public class RaceRacialTraitDao implements Serializable {
 		this.update_at = update_at;
 	}
 
-	
-	public RaceRacialTraitDao() {
+
+	public CharacterAttributeDao() {
 	}
 
 }

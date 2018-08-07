@@ -33,7 +33,7 @@ public class AttributeDao {
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", updatable = false)
+	@Column(name = "created_at", updatable = true)
 	private Date created_at;
 
 	@Column(name = "name")

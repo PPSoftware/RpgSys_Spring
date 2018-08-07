@@ -13,11 +13,10 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "character_feats")
+@Table(name = "feats_attibutes_dependecies")
 public class FeatAttributeDependecyDao implements Serializable {
 
 	private static final long serialVersionUID = -2257996512395408133L;
-
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -26,7 +25,7 @@ public class FeatAttributeDependecyDao implements Serializable {
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_at", updatable = false)
+	@Column(name = "update_at", updatable = true)
 	private Date update_at;
 	
 	@ManyToMany
