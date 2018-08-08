@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -40,6 +41,9 @@ public class UserDao implements Serializable {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Transient
+	private String passwordConfirm;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -81,6 +85,14 @@ public class UserDao implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public Date getCreated_at() {
