@@ -14,7 +14,6 @@ public interface IUserDaoRepository extends CrudRepository<UserDao, BigInteger>,
 	
 	UserDao findByUserName(String userName);
 		
-	List<UserDao> findByLogin(String login);
 	
 }
 

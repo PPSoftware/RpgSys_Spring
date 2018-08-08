@@ -34,7 +34,7 @@ public class UserController {
 		
 		logger.info("#### User Controller - find ####");
 		
-		Map<String,UserDao> mapa = new HashMap<>();
+		Map<String,UserDao> mapa = new HashMap<String, UserDao>();
 		
 		if(repoUser.findById(id).isPresent()){
 			mapa.put("OK", repoUser.findById(id).get());

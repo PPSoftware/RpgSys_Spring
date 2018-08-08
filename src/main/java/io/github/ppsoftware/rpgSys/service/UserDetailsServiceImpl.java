@@ -24,12 +24,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private IUserDaoRepository userRepository;
 
-    @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         UserDao user = userRepository.findByUserName(userName);
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
         for (UserGroupDao group : user.getGroups()){
             grantedAuthorities.add(new SimpleGrantedAuthority(group.getName()));
         }

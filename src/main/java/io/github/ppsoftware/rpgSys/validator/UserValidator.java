@@ -15,12 +15,10 @@ public class UserValidator implements Validator {
 	@Autowired
     private UserService userService;
 
-    @Override
     public boolean supports(Class<?> aClass) {
         return UserDao.class.equals(aClass);
     }
 
-    @Override
     public void validate(Object o, Errors errors) {
         UserDao user = (UserDao) o;
 

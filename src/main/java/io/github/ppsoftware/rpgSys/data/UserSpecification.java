@@ -13,12 +13,11 @@ import io.github.ppsoftware.rpgSys.model.UserDao;
 
 public class UserSpecification {
 	
-	public static Specification<UserDao> isLogin(String login) {
+	public static Specification<UserDao> isLogin(final String login) {
 		
 		return new Specification<UserDao>() {
 	
 
-			@Override
 			public Predicate toPredicate(Root<UserDao> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.equal(root.get("login"), login);				
 			}
